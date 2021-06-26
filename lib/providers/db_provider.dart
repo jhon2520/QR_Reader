@@ -1,6 +1,5 @@
 
 import 'dart:io';
-
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -10,6 +9,10 @@ import 'package:path/path.dart';
 
 class DBProvider
 {
+ //La clase tiene un atributo de tipo Database que cuando se instancia, y se quiera accerder
+ //A la propiedad _database a través del getter se validad si ya hay una base creada entonces se usa la
+ //creada si no, se crea una nueva por primera y única vez
+
   static Database? _database;
 
   static final DBProvider db = DBProvider._();
@@ -31,10 +34,11 @@ class DBProvider
     //se une el path con el nombre de la base de datos que pongamos, es muy 
     //importante poner la extensión
     final path = join(documentsDirectory.path,"ScansDB.db");
+    print(path);
 
     //crear base de datos
 
-    //es importante colocar la versión por si hay cambios estructurales
+    // es importante colocar la versión por si hay cambios estructurales
     //y se requiere crear una nueva base
     return await openDatabase(
       path,
@@ -52,7 +56,7 @@ class DBProvider
           
           ''');
       }
-      );
+      ); 
 
   }
 
