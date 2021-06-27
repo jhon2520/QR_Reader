@@ -39,8 +39,11 @@ class _HomePageBody extends StatelessWidget {
 
     final uiProvider = Provider.of<UiProvier>(context);
 
-   
-    DBProvider.db.database;
+   final tempScan = new ScanModel(valor: "https://www.123.com/");
+    DBProvider.db.nuevoSCan(tempScan);
+    DBProvider.db.deleteAllScans().then(print);
+
+
 
     //cambiar para mostrar la página respectiva
     final currentindex = uiProvider.selectedMenuOpt;

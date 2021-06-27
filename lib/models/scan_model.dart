@@ -6,13 +6,13 @@
 
 class ScanModel {
     
-    int id;
-    String tipo;
+    int? id;
+    String? tipo;
     String valor;
     
-    ScanModel({required this.id,required this.tipo,required this.valor,})
+    ScanModel({this.id,this.tipo,required this.valor,})
     {
-      if(this.tipo.contains("http"))
+      if(this.valor.contains("http"))
       {
         this.tipo = "http";
       }
@@ -24,15 +24,24 @@ class ScanModel {
 
     //el siguiente método coge un json con las características del
     //scan model y crea una nueva instancia de ScanModel
-    factory ScanModel.fromJson(Map<String, dynamic> json) => ScanModel(
+    factory ScanModel.fromJson(Map<String, dynamic> json)
+    {
+      return     ScanModel(
         id: json["id"],
         tipo: json["tipo"],
         valor: json["valor"],
     );
+    }
+    
     //coge la instancia de la clase y la convierte en un mapa
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "tipo": tipo,
-        "valor": valor,
-    };
+    Map<String, dynamic> toJson() 
+    { 
+      return   {
+                "id": id,
+                "tipo": tipo,
+                "valor": valor,
+              };
+    }
+    
+  
 }
